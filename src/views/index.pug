@@ -1,0 +1,108 @@
+doctype html
+html
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title Tabela de Pagamentos 
+		style.
+			.hide{ display: none }
+			table {
+				border-collapse: collapse;
+				width: 100%;
+				margin: 20px 0;
+				font-family: Arial, sans-serif;
+			}
+			th, td {
+				border: 1px solid #ddd;
+				padding: 8px;
+				text-align: left;
+				text-align: center;
+			}
+			th {
+				background-color: #f4f4f4;
+				font-weight: bold;
+			}
+	body
+		h1 Nanny
+		script.
+			// Função para formatar números com separador de milhar
+			function formatCurrency(number) {
+				return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+			}
+		table
+			thead
+				tr
+					th Data
+					th Valor do Dólar
+					th Valor hora
+					th Horas
+					th Valor em Dólar
+					th Valor em Reais
+			tbody
+				tr.hide
+					td 11/18
+					td $ 5,75
+					td $50
+					td 7
+					td $ 287,50
+					td R$ 2.012,50
+				tr.hide
+					td 11/20
+					td $ 5,77
+					td $50
+					td 7
+					td $ 288,50
+					td R$ 2.019,50 
+				tr 
+					td 12/02
+					td $ 6.06
+					td $35
+					td 4
+					td $#{ (4 * 35).toFixed(2) } 
+					td R$ #{ (6.06 * 4 * 35).toFixed(2) } 
+				tr 
+					td 12/03
+					td $ 6.07
+					td $35
+					td 4
+					td $#{ (4 * 35).toFixed(2) } 
+					td R$ #{ (6.07 * 4 * 35).toFixed(2) } 
+				tr 
+					td 12/04
+					td $ 6.05
+					td $35
+					td 4
+					td $#{ (4 * 35).toFixed(2) } 
+					td R$ #{ (6.05 * 4 * 35).toFixed(2) }
+				tr 
+					td TOTAL
+					td 
+					td 
+					td 
+					td 
+					td R$ #{ ((6.06 * 4 * 35) + (6.07 * 4 * 35) + (6.05 * 4 * 35)).toFixed(2) }					 		
+
+		h1 Marmitas
+		table
+			thead
+				tr
+					th Data
+					th Quantidade
+					th Valor 
+					th Total
+			tbody
+				tr 
+					td 12/03
+					td 2
+					td $14
+					td $#{ 2 * 14}
+				tr 
+					td 12/04
+					td 3
+					td $14
+					td $#{ (3 * 14)}
+				tr
+					td TOTAL
+					td
+					td
+					td $#{(2 * 14) + (3 * 14)}  
