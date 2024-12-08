@@ -31,7 +31,7 @@ jobs:
         FTP_SERVER: williansmartins.com
         FTP_USERNAME: williansmartins
         FTP_PASSWORD: 4Q4KXPt$4j1n2
-        LOCAL_DIR: www/dist/
+        LOCAL_DIR: dist/
         REMOTE_DIR: /srv/williansmartins.com/www/nayara-mariana/
         METHOD: sftp
         PORT: 22
