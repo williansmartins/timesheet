@@ -1,0 +1,39 @@
+name: 🚀 Deploy automatizado com compilação PUG
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    # Passo para instalar Node.js
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16' # ou a versão que você estiver usando
+
+    # Entrar na pasta e instalar dependências no mesmo comando
+    - name: Entrar na pasta e instalar dependências
+      run: |
+        cd www/
+        npm install
+        npm run build 
+
+    # Agora faz o upload via FTP
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@2.0.0
+      env:
+        FTP_SERVER: williansmartins.com
+        FTP_USERNAME: williansmartins
+        FTP_PASSWORD: 4Q4KXPt$4j1n2
+        LOCAL_DIR: www/dist/
+        REMOTE_DIR: /srv/williansmartins.com/www/nayara-mariana/
+        METHOD: sftp
+        PORT: 22
+        ARGS: --verbose

@@ -1,17 +1,14 @@
 doctype html
-html
+html(ng-app="myApp")
 	head
 		meta(charset="UTF-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		title Tabela de Pagamentos 
+		title Tabela de Pagamentos.
 		style.
-			.hide{ display: none }
-			table {
-				border-collapse: collapse;
-				width: 100%;
-				margin: 20px 0;
+			body{
 				font-family: Arial, sans-serif;
 			}
+			.hide{ display: none }
 			th, td {
 				border: 1px solid #ddd;
 				padding: 8px;
@@ -22,87 +19,166 @@ html
 				background-color: #f4f4f4;
 				font-weight: bold;
 			}
-	body
-		h1 Nanny
-		script.
-			// Função para formatar números com separador de milhar
-			function formatCurrency(number) {
-				return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-			}
-		table
-			thead
-				tr
-					th Data
-					th Valor do Dólar
-					th Valor hora
-					th Horas
-					th Valor em Dólar
-					th Valor em Reais
-			tbody
-				tr.hide
-					td 11/18
-					td $ 5,75
-					td $50
-					td 7
-					td $ 287,50
-					td R$ 2.012,50
-				tr.hide
-					td 11/20
-					td $ 5,77
-					td $50
-					td 7
-					td $ 288,50
-					td R$ 2.019,50 
-				tr 
-					td 12/02
-					td $ 6.06
-					td $35
-					td 4
-					td $#{ (4 * 35).toFixed(2) } 
-					td R$ #{ (6.06 * 4 * 35).toFixed(2) } 
-				tr 
-					td 12/03
-					td $ 6.07
-					td $35
-					td 4
-					td $#{ (4 * 35).toFixed(2) } 
-					td R$ #{ (6.07 * 4 * 35).toFixed(2) } 
-				tr 
-					td 12/04
-					td $ 6.05
-					td $35
-					td 4
-					td $#{ (4 * 35).toFixed(2) } 
-					td R$ #{ (6.05 * 4 * 35).toFixed(2) }
-				tr 
-					td TOTAL
-					td 
-					td 
-					td 
-					td 
-					td R$ #{ ((6.06 * 4 * 35) + (6.07 * 4 * 35) + (6.05 * 4 * 35)).toFixed(2) }					 		
 
-		h1 Marmitas
-		table
-			thead
-				tr
-					th Data
-					th Quantidade
-					th Valor 
-					th Total
-			tbody
-				tr 
-					td 12/03
-					td 2
-					td $14
-					td $#{ 2 * 14}
-				tr 
-					td 12/04
-					td 3
-					td $14
-					td $#{ (3 * 14)}
-				tr
-					td TOTAL
-					td
-					td
-					td $#{(2 * 14) + (3 * 14)}  
+			table {
+				border-collapse: collapse;
+				width: 100%;
+				margin: 20px 0;
+
+				background-color: #f8f9fa; /* Cor de fundo diferenciada */
+				border: 1px solid #ccc; /* Borda cinza clara */
+				border-radius: 8px; /* Arredondar cantos */
+				padding: 20px; /* Espaçamento interno */
+				margin: 20px 0; /* Espaçamento externo */
+				//- box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+			}
+
+			h1 {
+				color: #333; /* Cor do título */
+				font-size: 24px; /* Tamanho da fonte */
+				margin-bottom: 10px; /* Espaço abaixo do título */
+			}
+
+			p {
+				color: #555; /* Cor do texto */
+				margin-bottom: 15px; /* Espaço abaixo do parágrafo */
+			}
+
+			table tfoot td {
+				font-weight: bold; /* Destacar texto do restante */
+				background-color: #e9ecef; /* Fundo diferenciado */
+			}
+
+			.tab-container {
+				margin: 20px 0;
+			}
+
+			.tab-header {
+				list-style: none;
+				display: flex;
+				margin: 0;
+				padding: 0;
+				border-bottom: 2px solid #ddd;
+			}
+
+			.tab-header li {
+				padding: 10px 20px;
+				cursor: pointer;
+				border: 1px solid #ddd;
+				border-bottom: none;
+				background-color: #f8f9fa;
+				margin-right: 5px;
+				border-radius: 8px 8px 0 0;
+			}
+
+			.tab-header li.active {
+				background-color: #e9ecef;
+				font-weight: bold;
+				border-bottom: 2px solid #e9ecef;
+			}
+
+			.tab-content {
+				padding: 20px;
+				border: 1px solid #ddd;
+				background-color: #fff;
+				border-radius: 0 8px 8px 8px;
+			}
+
+
+	body(ng-controller="MainCtrl")
+		div.tab-container
+			ul.tab-header
+				li(ng-click="setActiveTab(1)", ng-class="{active: isActiveTab(1)}") Nanny
+				li(ng-click="setActiveTab(2)", ng-class="{active: isActiveTab(2)}") Marmitas
+
+			div.tab-content
+				div(ng-show="isActiveTab(1)")
+					div.marmitas-container
+						h1 Nanny
+						table
+							thead
+								tr
+									th Data
+									th Valor do Dólar
+									th Valor hora
+									th Horas
+									th Valor em Dólar
+									th Valor em Reais
+							tbody
+								tr(ng-repeat="item in dollarData")
+									//- td {{ (new Date(item.date)).toLocaleDateString('pt-BR') }}
+									td {{ item.date }}
+									td ${{ item.rate }}
+									td ${{ item.hourValue }}
+									td {{ item.hours }}
+									td ${{ (item.hourValue * item.hours)| number:2 }}
+									td R$ {{ (item.rate * item.hourValue * item.hours) | number:2 }}
+							tfoot
+								tr
+									td(colspan="6") TOTAL R$ {{ totalReais() }}
+				div(ng-show="isActiveTab(2)")
+					div.marmitas-container
+						h1 Marmitas
+						p Contratou 40 Marmitas
+						table
+							thead
+								tr
+									th Data
+									th Entregue
+							tbody
+								tr(ng-repeat="item in marmitaData")
+									td {{ item.date }}
+									td {{ item.quantity }}
+							tfoot
+								tr
+									td(colspan="2") Restante: {{ restante() }}
+
+
+		script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js")
+		script.
+			angular.module('myApp', [])
+				.controller('MainCtrl', function($scope) {
+					$scope.totalContratado = 40;
+					$scope.activeTab = 1;
+
+					$scope.setActiveTab = function(tabIndex) {
+						$scope.activeTab = tabIndex;
+					};
+
+					$scope.isActiveTab = function(tabIndex) {
+						return $scope.activeTab === tabIndex;
+					};
+
+					// Dados para o primeiro table de pagamentos
+					$scope.dollarData = [
+						//- { date: '11/18', rate: 5.75, hourValue: 50, hours: 7},
+						//- { date: '11/20', rate: 5.77, hourValue: 50, hours: 7},
+						{ date: '02/12', rate: 6.06, hourValue: 35, hours: 4},
+						{ date: '04/12', rate: 6.05, hourValue: 35, hours: 4 },
+						{ date: '05/12', rate: 5.98, hourValue: 35, hours: 4 },
+						{ date: '06/12', rate: 6.02, hourValue: 35, hours: 4},
+					];
+
+					// Função para calcular o total em Reais
+					$scope.totalReais = function() {
+						const total = $scope.dollarData.reduce(function(acc, item) {
+							return acc + (item.hourValue * item.hours * item.rate);
+						}, 0);
+						return total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					};
+
+
+					// Dados para o segundo table de marmitas
+					$scope.marmitaData = [
+						{ date: '03/12', quantity: 2, price: 14 },
+						{ date: '04/12', quantity: 3, price: 14 }
+					];
+
+					$scope.totalEntregues = function() {
+						return $scope.marmitaData.reduce((total, item) => total + item.quantity, 0);
+					};
+
+					$scope.restante = function() {
+						return $scope.totalContratado - $scope.totalEntregues();
+					};
+				}); 
