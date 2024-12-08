@@ -21,7 +21,6 @@ jobs:
     # Entrar na pasta e instalar dependências no mesmo comando
     - name: Entrar na pasta e instalar dependências
       run: |
-        cd www/
         npm install
         npm run build 
 
