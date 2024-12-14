@@ -115,7 +115,7 @@ html(ng-app="myApp")
 									td R$ {{ (item.rate * item.hourValue * item.hours) | number:2 }}
 							tfoot
 								tr
-									td(colspan="6") TOTAL R$ {{ totalReais() }} (${{totalDollar()}})
+									td(colspan="6") TOTAL R$ {{ totalReais() }} 
 								//- tr
 								//- 	td(colspan="6") TOTAL $ {{totalDollar()}}									
 				div(ng-show="isActiveTab(2)")
