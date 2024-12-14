@@ -44,9 +44,13 @@ html(ng-app="myApp")
 				margin-bottom: 15px; /* Espaço abaixo do parágrafo */
 			}
 
-			table tfoot td {
-				font-weight: bold; /* Destacar texto do restante */
-				background-color: #e9ecef; /* Fundo diferenciado */
+			table tfoot {
+				//- border: none;
+				td {
+					font-weight: bold; /* Destacar texto do restante */
+					background-color: white; /* Fundo diferenciado */
+					border: none;
+				}
 			}
 
 			.tab-container {
@@ -115,7 +119,12 @@ html(ng-app="myApp")
 									td R$ {{ (item.rate * item.hourValue * item.hours) | number:2 }}
 							tfoot
 								tr
-									td(colspan="6") TOTAL R$ {{ totalReais() }} 
+									td 
+									td 
+									td 
+									td 
+									td 
+									td TOTAL R$ {{ totalReais() }} 
 								//- tr
 								//- 	td(colspan="6") TOTAL $ {{totalDollar()}}									
 				div(ng-show="isActiveTab(2)")
