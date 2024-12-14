@@ -88,6 +88,18 @@ html(ng-app="myApp")
 				border-radius: 0 8px 8px 8px;
 			}
 
+			.table-no-line{
+				//- border-collapse: separate;
+				//- border-spacing: 0 4px;
+				border: none;
+			}
+
+			.marmitas-container{
+				table {
+					max-width: 600px;
+				}
+			}
+
 
 	body(ng-controller="MainCtrl")
 		div.tab-container
@@ -97,9 +109,9 @@ html(ng-app="myApp")
 
 			div.tab-content
 				div(ng-show="isActiveTab(1)")
-					div.marmitas-container
+					div.nanny-container
 						h1 Nanny
-						table
+						table.table-no-line
 							thead
 								tr
 									th Data
@@ -124,7 +136,7 @@ html(ng-app="myApp")
 									td 
 									td 
 									td 
-									td TOTAL R$ {{ totalReais() }} 
+									td R$ {{ totalReais() }} 
 								//- tr
 								//- 	td(colspan="6") TOTAL $ {{totalDollar()}}									
 				div(ng-show="isActiveTab(2)")
