@@ -115,7 +115,9 @@ html(ng-app="myApp")
 									td R$ {{ (item.rate * item.hourValue * item.hours) | number:2 }}
 							tfoot
 								tr
-									td(colspan="6") TOTAL R$ {{ totalReais() }}
+									td(colspan="6") TOTAL R$ {{ totalReais() }} (${{totalDollar()}})
+								//- tr
+								//- 	td(colspan="6") TOTAL $ {{totalDollar()}}									
 				div(ng-show="isActiveTab(2)")
 					div.marmitas-container
 						h1 Marmitas
@@ -151,12 +153,11 @@ html(ng-app="myApp")
 
 					// Dados para o primeiro table de pagamentos
 					$scope.dollarData = [
-						//- { date: '11/18', rate: 5.75, hourValue: 50, hours: 7},
-						//- { date: '11/20', rate: 5.77, hourValue: 50, hours: 7},
-						{ date: '02/12', rate: 6.06, hourValue: 35, hours: 4},
-						{ date: '04/12', rate: 6.05, hourValue: 35, hours: 4 },
-						{ date: '05/12', rate: 5.98, hourValue: 35, hours: 4 },
-						{ date: '06/12', rate: 6.02, hourValue: 35, hours: 4},
+						{ date: '09/12', rate: 6.05, hourValue: 35, hours: 4.5 }, 
+						{ date: '10/12', rate: 6.05, hourValue: 35, hours: 4   },
+						{ date: '11/12', rate: 6.03, hourValue: 35, hours: 4   },
+						{ date: '12/12', rate: 5.94, hourValue: 35, hours: 4   },
+						{ date: '13/12', rate: 6.04, hourValue: 35, hours: 4   },
 					];
 
 					// Função para calcular o total em Reais
@@ -167,11 +168,27 @@ html(ng-app="myApp")
 						return total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 					};
 
+					// Função para calcular o total em Dollar
+					$scope.totalDollar = function() {
+						const total = $scope.dollarData.reduce(function(acc, item) {
+							return acc + (item.hourValue * item.hours);
+						}, 0);
+						return total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					};
+
 
 					// Dados para o segundo table de marmitas
 					$scope.marmitaData = [
-						{ date: '03/12', quantity: 2, price: 14 },
-						{ date: '04/12', quantity: 3, price: 14 }
+						{ date: '04/12', quantity: 2, price: 14 }, //quarta-feira
+						{ date: '05/12', quantity: 3, price: 14 }, //quinta-feira
+						//- { date: '06/12', quantity: 3, price: 14 }, //sexta-feira
+						//- { date: '07/12', quantity: 3, price: 14 }
+						//- { date: '08/12', quantity: 3, price: 14 }
+						{ date: '09/12', quantity: 2, price: 14 }, //segunda-feira
+						{ date: '10/12', quantity: 1, price: 14 }, //terça-feira
+						{ date: '11/12', quantity: 2, price: 14 }, //quarta-feira
+						{ date: '12/12', quantity: 1, price: 14 }, //quinta-feira
+						{ date: '13/12', quantity: 2, price: 14 }, //sexta-feira
 					];
 
 					$scope.totalEntregues = function() {
