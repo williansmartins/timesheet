@@ -174,11 +174,10 @@ html(ng-app="myApp")
 
 					// Dados para o primeiro table de pagamentos
 					$scope.dollarData = [
-						{ date: '23/12', rate: 6.15, hourValue: 35, hours: 4   }, 
-						//- { date: '24/12', rate: 6.15, hourValue: 35, hours: 4   },
-						{ date: '25/12', rate: 6.15, hourValue: 40, hours: 7   },
-						//- { date: '26/12', rate: 6.15, hourValue: 35, hours: 4   },
-						{ date: '27/12', rate: 6.15, hourValue: 35, hours: 4   },
+						{ date: '06/01', rate: 6.15, hourValue: 35, hours: 3   }, 
+						{ date: '07/01', rate: 6.15, hourValue: 35, hours: 4   }, 
+						{ date: '08/01', rate: 6.15, hourValue: 40, hours: 7   }, 
+						{ date: '09/01', rate: 6.15, hourValue: 35, hours: 3   }, 
 					];
 
 					// Função para calcular o total em Reais
@@ -215,10 +214,13 @@ html(ng-app="myApp")
 						{ date: '20/12', quantity: 2, price: 14 }, 
 
 						{ date: '23/12', quantity: 2, price: 14 }, 
-						//- { date: '24/12', quantity: 1, price: 14 }, 
 						{ date: '25/12', quantity: 1, price: 14 }, 
-						//- { date: '26/12', quantity: 2, price: 14 }, 
 						{ date: '27/12', quantity: 2, price: 14 }, 
+
+						{ date: '06/01', quantity: 2, price: 14 }, 
+						{ date: '07/01', quantity: 1, price: 14 }, 
+						{ date: '08/01', quantity: 2, price: 14 }, 
+						{ date: '10/01', quantity: 2, price: 14 }, 
 					];
 
 					$scope.totalEntregues = function() {
