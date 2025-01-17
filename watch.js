@@ -7,6 +7,7 @@ const path = require('path'); // Importa o módulo de manipulação de caminhos
 const srcFolder = './src';
 const distFolder = './dist';
 const jsonFile = './src/data.json'; // Caminho do arquivo JSON de origem
+const cssFile = './src/styles/styles.css'; // Caminho do arquivo CSS de origem
 
 // Função para compilar arquivos PUG
 function compilePug() {
@@ -35,6 +36,16 @@ function compilePug() {
         console.log('Arquivo data.json copiado para o diretório de destino');
     } else {
         console.log('Arquivo data.json não encontrado!');
+    }
+
+    // Copia o arquivo CSS para o diretório de destino
+    if (fs.existsSync(cssFile)) {
+        const destCssPath = path.join(distFolder, 'styles', 'styles.css');
+        fs.mkdirSync(path.dirname(destCssPath), { recursive: true }); // Cria a pasta de destino, se não existir
+        fs.copyFileSync(cssFile, destCssPath); // Copia o arquivo CSS
+        console.log('Arquivo styles.css copiado para o diretório de destino');
+    } else {
+        console.log('Arquivo styles/styles.css não encontrado!');
     }
 }
 
