@@ -6,6 +6,7 @@ const path = require('path'); // Importa o módulo de manipulação de caminhos
 // Define os diretórios de origem e destino
 const srcFolder = './src';
 const distFolder = './dist';
+const jsonFile = './src/data.json'; // Caminho do arquivo JSON de origem
 
 // Função para compilar arquivos PUG
 function compilePug() {
@@ -26,6 +27,15 @@ function compilePug() {
             console.log(`Compilado: ${outputFileName}`);
         }
     });
+
+    // Copia o arquivo data.json para o diretório de destino
+    if (fs.existsSync(jsonFile)) {
+        const destJsonPath = path.join(distFolder, 'data.json');
+        fs.copyFileSync(jsonFile, destJsonPath); // Copia o arquivo JSON
+        console.log('Arquivo data.json copiado para o diretório de destino');
+    } else {
+        console.log('Arquivo data.json não encontrado!');
+    }
 }
 
 // Configura o Browsersync para servir os arquivos no diretório de saída
