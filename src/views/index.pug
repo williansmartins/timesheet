@@ -160,7 +160,7 @@ html(ng-app="myApp")
 		script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js")
 		script.
 			angular.module('myApp', [])
-				.controller('MainCtrl', function($scope) {
+				.controller('MainCtrl', function($scope, $http) {
 					$scope.totalContratado = 40;
 					$scope.activeTab = 1;
 
