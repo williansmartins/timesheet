@@ -172,13 +172,11 @@ html(ng-app="myApp")
 						return $scope.activeTab === tabIndex;
 					};
 
-					// Dados para o primeiro table de pagamentos
-					$scope.dollarData = [
-						{ date: '06/01', rate: 6.07, hourValue: 35, hours: 3   }, 
-						{ date: '07/01', rate: 6.07, hourValue: 35, hours: 3   }, 
-						{ date: '08/01', rate: 6.07, hourValue: 40, hours: 7   }, 
-						{ date: '10/01', rate: 6.07, hourValue: 35, hours: 3   }, 
-					];
+					$http.get('data.json').then(function(response) {
+						// Carregar os dados a partir do arquivo JSON
+						$scope.dollarData = response.data.dollarData;
+						$scope.marmitaData = response.data.marmitaData;
+					});
 
 					// Função para calcular o total em Reais
 					$scope.totalReais = function() {
@@ -195,38 +193,6 @@ html(ng-app="myApp")
 						}, 0);
 						return total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 					};
-
-
-					// Dados para o segundo table de marmitas
-					$scope.marmitaData = [
-						{ date: '04/12', quantity: 2, price: 14 }, //quarta-feira
-						{ date: '05/12', quantity: 3, price: 14 }, //quinta-feira
-						{ date: '09/12', quantity: 2, price: 14 }, //segunda-feira
-						{ date: '10/12', quantity: 1, price: 14 }, //terça-feira
-						{ date: '11/12', quantity: 2, price: 14 }, //quarta-feira
-						{ date: '12/12', quantity: 1, price: 14 }, //quinta-feira
-						{ date: '13/12', quantity: 2, price: 14 }, //sexta-feira
-
-						{ date: '16/12', quantity: 2, price: 14 }, 
-						{ date: '17/12', quantity: 1, price: 14 }, 
-						{ date: '18/12', quantity: 1, price: 14 }, 
-						{ date: '19/12', quantity: 2, price: 14 }, 
-						{ date: '20/12', quantity: 2, price: 14 }, 
-
-						{ date: '23/12', quantity: 2, price: 14 }, 
-						{ date: '25/12', quantity: 1, price: 14 }, 
-						{ date: '27/12', quantity: 2, price: 14 },  
-
-						{ date: '30/12', quantity: 2, price: 14 }, 
-						{ date: '02/01', quantity: 2, price: 14 }, 
-						{ date: '03/01', quantity: 2, price: 14 },
-						
-						{ date: '06/01', quantity: 2, price: 14 }, 
-						{ date: '07/01', quantity: 1, price: 14 }, 
-						{ date: '08/01', quantity: 2, price: 14 }, 
-						{ date: '10/01', quantity: 2, price: 14 }, 
-						
-					];
 
 					$scope.totalEntregues = function() {
 						return $scope.marmitaData.reduce((total, item) => total + item.quantity, 0);
