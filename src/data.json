@@ -3,7 +3,7 @@
       { "date": "13/01", "rate": 6.03, "hourValue": 35, "hours": 3 },
       { "date": "14/01", "rate": 6.03, "hourValue": 35, "hours": 3 },
       { "date": "14/01", "rate": 6.03, "hourValue": 40, "hours": 8 },
-      { "date": "15/01", "rate": 6.03, "hourValue": 35, "hours": 7 }
+      { "date": "15/01", "rate": 6.03, "hourValue": 40, "hours": 7 }
     ],
     "marmitaData": [
       { "date": "04/12", "quantity": 2, "price": 14 },
