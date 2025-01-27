@@ -68,6 +68,12 @@ fs.watch(srcFolder, { recursive: true }, (eventType, filename) => {
     if (filename.endsWith('.css')) {
         bs.reload('*.css'); // Atualiza o navegador para mudanças em arquivos CSS
     }
+
+    if (filename.endsWith('data.json')) {
+        compilePug(); // Garante que as mudanças sejam aplicadas no contexto do HTML
+        bs.reload(); // Atualiza o navegador para refletir o novo conteúdo JSON
+        console.log('Arquivo data.json atualizado e navegador recarregado.');
+    }
 });
 
 // Mensagem inicial no terminal
