@@ -1,4 +1,4 @@
-doctype html
+doctype html   
 html(ng-app="myApp")
 	head
 		meta(charset="UTF-8")
@@ -10,7 +10,7 @@ html(ng-app="myApp")
 		div.tab-container
 			ul.tab-header
 				li(ng-click="setActiveTab(1)", ng-class="{active: isActiveTab(1)}") Nanny
-				li(ng-click="setActiveTab(2)", ng-class="{active: isActiveTab(2)}") Marmitas
+				//- li(ng-click="setActiveTab(2)", ng-class="{active: isActiveTab(2)}") Marmitas
 
 			div.tab-content
 				div(ng-show="isActiveTab(1)")
@@ -85,22 +85,28 @@ html(ng-app="myApp")
 
 					// Função para calcular o total em Reais
 					$scope.totalReais = function() {
-						const total = $scope.dollarData.reduce(function(acc, item) {
-							return acc + (item.hourValue * item.hours * item.rate);
-						}, 0);
-						return total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						if($scope.dollarData){
+							const total = $scope.dollarData.reduce(function(acc, item) {
+								return acc + (item.hourValue * item.hours * item.rate);
+							}, 0);
+							return total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						}
 					};
 
 					// Função para calcular o total em Dollar
 					$scope.totalDollar = function() {
-						const total = $scope.dollarData.reduce(function(acc, item) {
-							return acc + (item.hourValue * item.hours);
-						}, 0);
-						return total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						if($scope.dollarData){
+							const total = $scope.dollarData.reduce(function(acc, item) {
+								return acc + (item.hourValue * item.hours);
+							}, 0);
+							return total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						}
 					};
 
 					$scope.totalEntregues = function() {
-						return $scope.marmitaData.reduce((total, item) => total + item.quantity, 0);
+						if($scope.marmitaData){
+							return $scope.marmitaData.reduce((total, item) => total + item.quantity, 0);
+						}
 					};
 
 					$scope.restante = function() {
