@@ -1,9 +1,9 @@
 {
     "dollarData": [
-      { "date": "03/01", "rate": 5.86, "hourValue": 35, "hours": 3 },
-      { "date": "04/01", "rate": 5.86, "hourValue": 35, "hours": 4 },
-      { "date": "06/01", "rate": 5.86, "hourValue": 35, "hours": 4 },
-      { "date": "07/01", "rate": 5.86, "hourValue": 35, "hours": 3 }
+      { "date": "10/02", "rate": 5.72, "hourValue": 35, "hours": 3 },
+      { "date": "11/02", "rate": 5.72, "hourValue": 35, "hours": 5 },
+      { "date": "13/02", "rate": 5.72, "hourValue": 35, "hours": 4 },
+      { "date": "14/02", "rate": 5.72, "hourValue": 35, "hours": 2 }
     ],
     "marmitaData": [
       { "date": "04/12", "quantity": 2, "price": 14 },
