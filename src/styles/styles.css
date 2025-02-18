@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 20px;
     padding: 0;
-    background-color: green;
+    /* background-color: green; */
 }
 
 .hide{ display: none }
@@ -79,6 +79,7 @@ table tfoot td {
     border: 1px solid #ddd;
     background-color: #fff;
     border-radius: 0 8px 8px 8px;
+    overflow: auto;
 }
 
 .table-no-line{
