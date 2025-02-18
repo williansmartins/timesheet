@@ -3,7 +3,7 @@ name: 🚀 Deploy automatizado com compilação PUG
 on:
   push:
     branches:
-      - 'main'
+      - 'cache'
 
 jobs:
   FTP-Deploy-Action:
