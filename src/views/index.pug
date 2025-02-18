@@ -79,11 +79,11 @@ html(ng-app="myApp")
 						return $scope.activeTab === tabIndex;
 					};
 
-					$http.get('data.json').then(function(response) {
-						// Carregar os dados a partir do arquivo JSON
+					$http.get('data.json?v=' + new Date().getTime()).then(function(response) {
 						$scope.dollarData = response.data.dollarData;
 						$scope.marmitaData = response.data.marmitaData;
 					});
+
 
 					// Função para calcular o total em Reais
 					$scope.totalReais = function() {
