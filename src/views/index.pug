@@ -4,7 +4,9 @@ html(ng-app="myApp")
 		meta(charset="UTF-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		title Version: 2
-		<link rel="stylesheet" href="styles/styles.css">
+		//- link(rel="stylesheet" href=`styles/#{cssFileName}`)
+		link(rel="stylesheet" href=`styles/${cssFileName}`)
+
 
 	body(ng-controller="MainCtrl")
 		div.tab-container
